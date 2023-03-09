@@ -1,7 +1,13 @@
 const ProductsModel = require('../models/products');
 
 async function get(req, res) {
-  //
+  const { id } = req.params
+
+  const products = id ?
+    await ProductsModel.findOne({ id }) :
+    await ProductsModel.find()
+
+  res.send(products)
 }
 
 async function post(req, res) {

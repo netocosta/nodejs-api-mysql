@@ -4,7 +4,7 @@ async function connect() {
   return await mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'projeto-api'
   })
 }
