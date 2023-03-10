@@ -38,7 +38,15 @@ async function put(req, res) {
 }
 
 async function remove(req, res) {
-  //
+  const { id } = req.params
+
+  const product = await ProductsModel.destroy(id)
+
+  const message = product.affectedRows ? 'success' : 'error'
+
+  res.send({
+    message: message,
+  })
 }
 
 module.exports = {
