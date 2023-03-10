@@ -15,7 +15,7 @@ async function post(req, res) {
     name, brand, price
   } = req.body
 
-  const product = await ProductsModel.create({
+  await ProductsModel.create({
     name: name,
     brand: brand,
     price: price,
@@ -27,7 +27,14 @@ async function post(req, res) {
 }
 
 async function put(req, res) {
-  //
+  const { id } = req.params
+
+  const product = await ProductsModel.update(id, req.body, { new: true })
+
+  res.send({
+    message: 'success',
+    product: product.item,
+  })
 }
 
 async function remove(req, res) {

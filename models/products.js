@@ -26,9 +26,13 @@ async function create(params) {
   return result
 }
 
-async function update(id, params) {
+async function update(id, params, returning = { new: false }) {
   const db = await connection()
   const result = await db.query(`UPDATE ${table} SET ? WHERE ID=${id}`, params)
+  if (returning.new) {
+    const updated = await this.findOne({ id: id })
+    result.item = updated
+  }
   await db.end()
 
   return result
