@@ -4,8 +4,8 @@ const routes = require('./routes/routes')
 
 const app = express()
 
-// receber dados de formulario
-app.use(express.urlencoded({ extended: true }))
+// receber dados do body como json
+app.use(express.json())
 
 // definindo as rotas
 app.use('/api', routes)

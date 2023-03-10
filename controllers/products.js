@@ -11,7 +11,19 @@ async function get(req, res) {
 }
 
 async function post(req, res) {
-  //
+  const {
+    name, brand, price
+  } = req.body
+
+  const product = await ProductsModel.create({
+    name: name,
+    brand: brand,
+    price: price,
+  })
+
+  res.send({
+    message: 'success'
+  })
 }
 
 async function put(req, res) {
